@@ -1,0 +1,48 @@
+{% extends "accounts.html" %}
+
+{% block title %}Sign In{% endblock title %}
+
+
+{% block caption %}
+Sign in to start your session
+{% endblock caption %}
+
+{% block form %}
+    <div class="input-group mb-3">
+        <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" placeholder="Username" class="form-control" required="" id="id_username">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="far fa-user"></span>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input type="password" name="password" autocomplete="current-password" placeholder="Password" class="form-control" required="" id="id_password">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="icheck-primary">
+            <input type="checkbox" id="remember">
+            <label for="remember">
+                Remember Me
+            </label>
+            </div>
+        </div>
+        <div class="col-4">
+            <button type="submit" class="btn btn-outline-info btn-block">Sign In</button>
+        </div>
+    </div>
+
+    <p class="mb-1">
+        <a href="forgot-password.html">I forgot my password</a>
+    </p>
+
+    <p class="mb-0">
+        <a href="{% url 'accounts:sign-up' %}" class="text-center">Register a new membership</a>
+    </p>
+{% endblock form %}

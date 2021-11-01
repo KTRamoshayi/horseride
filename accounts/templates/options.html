@@ -1,0 +1,36 @@
+{% extends "accounts-management.html" %}
+
+{% block title %}{{request.user.get_full_name}} Options{% endblock title %}
+
+
+{% block caption %}What would you like to alter??{% endblock caption %}
+
+{% block form %}<div class="col-12">
+        <a class="btn btn-block btn-outline-info" href="{% url 'accounts:details-change' %}">Personal Details</a>
+    </div>
+    <br>
+
+    <div class="col-12">
+        <a class="btn btn-block btn-outline-info" href="{% url 'accounts:password-change' %}">Password</a>
+    </div>
+    <br>
+    
+    <div class="col-12">
+        <a class="btn btn-block btn-outline-info" href="{% url 'accounts:residence-change' %}">Residential Details</a>
+    </div>
+    <br>
+    
+    <div class="col-12">
+        <a class="btn btn-block btn-outline-info" href="{% url 'accounts:coms-change' %}">Communication Details</a>
+    </div>
+    <br>
+    
+    <div class="col-12">
+        <a class="btn btn-block btn-outline-info" href="{% url 'accounts:display-settings' %}">Display Settings</a>
+    </div>
+    <br>
+    
+    <div class="col-12">
+        <a class="btn btn-block btn-outline-info" href="{% url 'home:home' %}">Home</a>
+    </div>
+{% endblock form %}

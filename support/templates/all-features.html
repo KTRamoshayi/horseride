@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Support: Features{% endblock title %}
+
+{% block header %}Support: Features{% endblock header %}
+
+{% block breadcrumbs %}
+<li class="breadcrumb-item active">Support</li>
+{% endblock breadcrumbs %}
+
+{% block body %}
+    {% for feature in feature_list %}
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4>{{feature.title}}</h4>
+                </div>
+
+                <div class="card-body">
+                    <p>{{feature.description}}</p>
+                </div>
+
+
+                <div class="card-footer">
+                    {% if feature.call %}
+                        <a  class="btn btn-block btn-outline-danger" href="tel:{{feature.call}}"></i> {{feature.call}}</a>
+                    {% endif %}
+                    {% if feature.email %}
+                        <a  class="btn btn-block btn-outline-danger" href="mailto:{{feature.email}}"></i> {{feature.email}}</a>
+                    {% endif %}
+                    <a class="btn btn-block btn-outline-danger" href="{{feature.get_absolute_url}}">Articles</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock body %}

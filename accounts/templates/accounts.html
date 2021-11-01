@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{% static 'gj.png' %}">
+    
+    <title>{% block title %}{% endblock title %}</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+</head>
+
+
+<body class="login-page
+                    {% if request.user.displaysetting.small_text %} text-sm {% endif %}
+                    {% if request.user.displaysetting.dark_mode %} dark-mode {% endif %}
+                    " style="min-height: 496.391px;">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="{% static 'gj.png' %}">Horse Ride</a>
+        </div>
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">{% block caption %}{% endblock caption %}</p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {% block form %}
+                    
+                    {% endblock form %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+
+
+</body>
+</html>

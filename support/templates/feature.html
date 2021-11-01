@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}{{feature.title}}{% endblock title %}
+
+{% block header %}{{feature.title}}{% endblock header %}
+
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'support:all-features' %}">Features</a></li>
+<li class="breadcrumb-item active">{{feature.title}}</li>
+{% endblock breadcrumbs %}
+
+{% block body %}
+    <div class="col-lg-6 offset-lg-3">
+        <div class="card">
+            <div class="card-header">
+                <h4>Articles</h4>
+            </div>
+
+            <div class="card-body">
+                <p>{{feature.description|linebreaks}}</p>
+                
+                Select and article from below:
+                <table class="table table-hover">
+                    <tbody>
+                        {% for article in feature.article_set.all %}
+                            <tr>
+                                <td>
+                                    {{article.title}} <br>
+                                    <small>
+                                        <span class="text-muted">{{article.caption}}</span>
+                                    </small>
+                                </td>
+                                <td width="150px">
+                                    <a href="{{article.get_absolute_url}}" class="btn btn-block btn-outline-danger">Get help</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-footer">
+                {% if feature.call %}
+                    <a  class="btn btn-block btn-sm btn-outline-info" href="tel:{{feature.call}}"></i> {{feature.call}}</a>
+                {% endif %}
+                {% if feature.email %}
+                    <a  class="btn btn-block btn-sm btn-outline-info" href="mailto:{{feature.email}}"></i> {{feature.email}}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock body %}

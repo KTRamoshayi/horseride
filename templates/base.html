@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock title %} - HorseRide</title>
+   
+    <script language='javascript'>
+        function renderFullScreen() {
+            top.resizeTo(window.screen.availWidth, window.screen.availHeight);
+            top.moveTo(0,0);
+        };
+    </script>
+
+    {% include 'elements/stylesheets.html' %}
+</head>
+
+<body class="
+        layout-navbar-fixed
+        accent-danger
+        layout-fixed
+        control-sidebar-slide-open
+        sidebar-mini
+        sidebar-collapse
+        layout-footer-fixed
+        {% if request.user.displaysetting.small_text %}text-sm {% endif %}
+        {% if request.user.displaysetting.dark_mode %}dark-mode {% endif %}
+        "
+        style="height: auto;"
+        
+        {% if not request.user.displaysettings.full_screen %}
+            onload="renderFullScreen();"
+        {% endif %}
+    >
+    <!-- Site wrapper -->
+    <div class="wrapper">
+
+        {% if not form %}
+            <div class="preloader flex-column justify-content-center align-items-center">
+            {% if office.logo %}
+                <img class="animation__shake" src="{{office.logo.url}}" alt="Junctions" width="60" height="60">
+            {% else %}
+                <img class="animation__shake" src="{% static 'icon.png' %}" alt="Junctions" width="60" height="60">
+            {% endif %}
+            </div>
+        {% endif %}
+
+    <!-- Navbar -->
+        {% include 'elements/navbar.html' %}
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar elevation-4 sidebar-dark-danger">
+        <!-- Brand Logo -->
+        <a class="brand-link navbar-danger">
+            <img src="{% static 'icon.png' %}" alt="HorseRide Logo" class="brand-image img-circle elevation-3" style="opacity: .9">
+            <span class="brand-text font-weight-light">HorseRide</span>
+        </a>
+
+        <!-- Sidebar -->
+            {% include 'elements/sidebar.html' %}
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+
+            <!-- Container fluid -->
+            <div class="container-fluid">
+                <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>{% block header %}{% endblock header %}</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                    {% block breadcrumbs %}{% endblock breadcrumbs %}
+                    </ol>
+                </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                {% block body %}{% endblock body %}
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Footer -->
+    {% include 'elements/footer.html' %}
+    <!-- /.footer -->
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- Scripts -->
+    {% include 'elements/scripts.html' %}
+    <!-- /.scripts -->
+
+</body>
+</html>

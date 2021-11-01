@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %}Home{% endblock title %}
+
+{% block header %}Latest Artwork{% endblock header %}
+
+
+{% block body %}
+
+    {% for artwork in object_list %}
+        <div class="col-md-6 offset-md-3">
+            {% if artwork.verified %}
+            <div class="card card-danger card-outline">
+            {% else %}
+            <div class="card card-danger">
+            {% endif %}
+                <div class="card-body box-profile">
+                    <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle" src="{{artwork.cover.url}}" alt="Cover">
+                    </div>
+
+                    <h3 class="profile-username text-center">{{artwork.title}}</h3>
+
+                    <p class="text-muted text-center">{{artwork.created|naturaltime}} by <a href="{% url 'publish:user-artwork-list' artwork.manager.id %}">{{artwork.manager}}</a></p>
+
+                    <ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                            <b>Likes</b> <a class="float-right text-secondary">1,322</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Dislikes</b> <a class="float-right text-secondary">543</a>
+                        </li>
+                    </ul>
+
+                    <p>
+                        {{artwork.description|linebreaks}}
+                    </p>
+
+                    <div class="row">
+                        <a href="{{artwork.file.url}}" class="btn btn-outline-danger col-md-6"><b>File</b></a>
+                        <a href="#" class="btn btn-outline-danger col-md-6"><b>Home</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock body %}

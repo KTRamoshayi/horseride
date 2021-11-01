@@ -1,0 +1,10 @@
+{% extends "accounts-management.html" %}
+
+{% block title %}{{request.user.get_full_name}} {{meta.title}}{% endblock title %}
+
+
+{% block caption %}{{meta.caption}}{% endblock caption %}
+
+{% block form %}
+    {{form.as_p}}
+{% endblock form %}

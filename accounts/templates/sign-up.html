@@ -1,0 +1,64 @@
+{% extends "accounts.html" %}
+
+{% block title %}Sign Up{% endblock title %}
+
+
+{% block caption %}
+Register a new membership
+{% endblock caption %}
+
+{% block form %}
+    <div class="mb-3">
+        <input type="text" name="first_name" maxlength="150" placeholder="First name" class="form-control" required="" id="id_first_name">
+    </div>
+    <div class="mb-3">
+        <input type="text" name="last_name" maxlength="150" placeholder="Last name" class="form-control" required="" id="id_last_name">
+    </div>
+    <div class="input-group mb-3">
+        <input type="email" name="email" maxlength="254" placeholder="Email address" class="form-control" id="id_email">
+        <div class="input-group-append">
+            <div class="input-group-text">
+            <span class="far fa-envelope"></span>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" name="username" maxlength="254" placeholder="Username" class="form-control" id="id_username">
+        <div class="input-group-append">
+            <div class="input-group-text">
+            <span class="far fa-user"></span>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input type="password" name="password1" autocomplete="new-password" placeholder="Reliable Password" class="form-control" required="" id="id_password1">
+        <div class="input-group-append">
+            <div class="input-group-text">
+            <span class="fas fa-lock"></span>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input type="password" name="password2" autocomplete="new-password" placeholder="Confirm Password" class="form-control" required="" id="id_password2">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="icheck-primary">
+                <input type="checkbox" name="is_active" id="id_is_active" checked="">
+                <label for="agreeTerms">
+                    I agree to the <a href="#">terms</a>
+                </label>
+            </div>
+        </div>
+        <div class="col-4">
+            <button type="submit" class="btn btn-outline-info btn-block">Sign Up</button>
+        </div>
+    </div>
+
+    <a href="{% url 'accounts:sign-in' %}" class="text-center">I already have a membership</a>
+{% endblock form %}
